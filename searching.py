@@ -19,6 +19,7 @@ def read_data(file_name, field):
         return None
     return data[field]
 
+
 def linear_search(sequence, number):
     search_res = {"positions": [], "count": 0}
     for i, value in enumerate(sequence):
@@ -28,6 +29,16 @@ def linear_search(sequence, number):
     return search_res
 
 
+def pattern_search(sequence, pattern):
+    positions = set()
+    i = 0
+    while i < len(sequence) - len(pattern):
+        if sequence[i:i + len(pattern)]:
+            positions.add(i)
+        i = i + 1
+    return positions
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
@@ -35,6 +46,9 @@ def main():
     results = linear_search(sequential_data, 0)
     print(results)
 
+    dna_sequence = read_data("sequential.json", "dna_sequence")
+    pos = pattern_search(dna_sequence, "ATA")
+    print(pos)
 
 
 if __name__ == '__main__':
